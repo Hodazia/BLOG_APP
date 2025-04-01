@@ -5,8 +5,10 @@ const User = require("../models/User");
 const Post = require("../models/Post")
 const Comment = require("../models/Comment")
 const bcrypt = require("bcrypt")
+const verifyToken = require("../verifyToken")
+const jwt = require("jsonwebtoken")
 
-router.put("/:id", async (req,res) => {
+router.put("/:id", verifyToken, async (req,res) => {
     try
     {
         if (req.body.password)
@@ -24,7 +26,7 @@ router.put("/:id", async (req,res) => {
 })
 
 // DELETE
-router.delete("/:id", async (req,res) => {
+router.delete("/:id", verifyToken, async (req,res) => {
     try
     {
         await User.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true})

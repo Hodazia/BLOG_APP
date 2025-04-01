@@ -4,6 +4,11 @@ const dotenv = require("dotenv")
 const app = express();
 const authRoute = require("./routes/auth")
 const userRoute = require("./routes/user")
+const postRoute = require("./routes/posts")
+const commentRoute = require("./routes/comment")
+const cookieParser = require("cookie-parser")
+const jwt = require("jsonwebtoken");
+
 //database
 const connectDB=async()=>{
     try{
@@ -21,9 +26,11 @@ const connectDB=async()=>{
 //middlewares
 dotenv.config()
 app.use(express.json())
+app.use(cookieParser())
 app.use("/api/auth",authRoute)
-app.use("/api/user",userRoute)
-
+app.use("/api/users",userRoute)
+app.use("/api/posts",postRoute)
+app.use("/api/comments", commentRoute)
 
 app.listen(3000,()=>{
     connectDB()
