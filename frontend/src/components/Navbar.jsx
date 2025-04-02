@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { BsSearch } from "react-icons/bs";
-
+import { FaBars } from "react-icons/fa";
 
 const Navbar = () => {
   const user = true;
@@ -12,9 +12,12 @@ const Navbar = () => {
         <p><BsSearch /></p>
         <input className='outline-none px-3' placeholder = 'search' type='text'/>
       </div>
-      <div className='flex items-center justify-center space-x-4 md:space-x-8'>
-      {user ? <h3><Link to="/write">write</Link></h3> : <h3><Link to="/login">login</Link></h3> }
-      {user ? <h3><Link to="/write">create</Link></h3> : <h3><Link to="/register">register</Link></h3> }
+      <div className='hidden md:flex items-center justify-center space-x-4 md:space-x-8'>
+      {user ? <h3><Link to="/write">write</Link></h3> : <h3><Link to="/login">Login</Link></h3> }
+      {user ? <h3>Profile</h3> : <h3><Link to="/register">Register</Link></h3> }
+      </div>
+      <div className='md:hidden text-lg'>
+        <p><FaBars /></p>
       </div>
     </div>
   )

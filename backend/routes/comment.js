@@ -5,7 +5,7 @@ const User = require("../models/User");
 const Post = require("../models/Post")
 const Comment = require("../models/Comment")
 const bcrypt = require("bcrypt")
-
+const verifyToken = require("../verifyToken")
 
 router.post("/create", verifyToken, async (req,res) => {
     try
